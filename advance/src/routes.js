@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-Vue.use(router);
+Vue.use(Router);
 
 const routes = [
-    { path: '/home', component: require('./routes/home.vue') },
+    { alias: '/', path: '/mv', component: require('./routes/mv.vue') },
     { path: '/lyric', component: require('./routes/lyric.vue') },
     { path: '/song', component: require('./routes/song.vue') }
 ];
@@ -12,6 +12,7 @@ const routes = [
 export default function createRouter(){
    
    let vueRouter = new Router({
+        mode: 'history',
         routes
    });
 
