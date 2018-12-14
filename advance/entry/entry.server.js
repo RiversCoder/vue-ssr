@@ -12,15 +12,16 @@ export default context => {
 
         //如果没有组件，则说明该路由不存在，报错404
         if(matchedComponent.length <= 0){
-            return reject({code:404});
+            return reject({code: 404});
         }
 
         //新增：遍历路由下所有的组件，如果有请求则执行请求
-        Promise.all(matchedComponent.map(v =>{
-            if (component.serverRequest) {
-                return component.serverRequest(vm.$store)
+        Promise.all(matchedComponent.map(v => {
+            if (v.sendRequest) {
+                return v.sendRequest(vm.$store)
             }
-        })).then(res => {
+        })).then(() => {
+            context.state = vm.$store.state;
             resolve(vm);
         }).catch(reject);
 

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import createRouter from './routes.js'
+import createStore from './vuex/store.js'
 import App from './app.vue'
 
 
@@ -7,9 +8,11 @@ import App from './app.vue'
 export function createVM(){
     
     const router = createRouter();
-    
+    const store = createStore();
+
     const vm = new Vue({
         router,
+        store,
         render: h => h(App)
     });
 
